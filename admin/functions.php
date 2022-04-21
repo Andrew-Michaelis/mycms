@@ -1,4 +1,11 @@
 <?php 
+  function confirm($result){
+    global $connection;
+    if(!$result){
+      die("QUERY FAILED. ".mysqli_error($connection));
+    }
+  }
+
   function insertCategories() {
     global $connection;
     if(isset($_POST["submit"])){
@@ -9,9 +16,7 @@
         $query = "INSERT INTO categories(cat_title) VALUE('{$cat_title}') ";
 
         $create_category_query = mysqli_query($connection, $query);
-        if(!$create_category_query){
-          die("Query Failed ".mysqli_error($connection));
-        }
+        confirm($create_category_query);
       }
     }
   }
@@ -37,7 +42,8 @@
     if(isset($_GET["delete"])){
       $get_cat_id = $_GET["delete"];
       $query = "DELETE FROM categories WHERE cat_id = {$get_cat_id} ";
-      /* $delete_query = */mysqli_query($connection, $query);
+      $delete_query = mysqli_query($connection, $query);
+      confirm($delete_query);
       header("Location: categories.php", true);
     }
   }
