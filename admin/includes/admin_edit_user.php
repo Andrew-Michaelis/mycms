@@ -32,8 +32,8 @@ if(isset($_POST["edit_user"])){
               user_password = '${user_password}', 
               user_email = '${user_email}'
             WHERE user_id = '{$the_user_id}'";
-  $update_user = mysqli_query($connection, $query);
-  confirm($update_user);
+  $update_user_query = mysqli_query($connection, $query);
+  confirm($update_user_query);
 }
 ?>
 <form action="" method="post" enctype="multipart/form-data">
