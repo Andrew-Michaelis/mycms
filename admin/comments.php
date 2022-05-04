@@ -11,7 +11,7 @@
           <div class="col-lg-12">
             <h1 class="page-header">
               Welcome to Admin
-              <small>John Doe</small>
+              <small><?php echo $_SESSION["username"]; ?></small>
             </h1>
             <?php
               if(isset($_GET["source"])){
