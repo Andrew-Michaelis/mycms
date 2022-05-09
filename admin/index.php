@@ -149,12 +149,12 @@
                 ?>
                 <div class="row">
                     <script type="text/javascript">
-                        google.charts.load('current', {'packages':['bar']});
+                        google.charts.load('current', {'packages':['corechart']});
                         google.charts.setOnLoadCallback(drawChart);
 
                         function drawChart() {
                             var data = google.visualization.arrayToDataTable([
-                            ['Data', 'Count'],
+                            ['', 'Total', {role:'style'}],
                             <?php
                             $element_text = ['Posts', 'Draft Posts', 
                                              'Comments', 'Unapproved Comments', 
@@ -164,22 +164,32 @@
                                               $comment_counts, $un_comment_count, 
                                               $user_counts, $subscriber_count,
                                               $category_counts];
+                            $element_color = ['#337ab7','#337ab7',
+                                              '#5cb85c','#5cb85c',
+                                              '#efad4e','#efad4e',
+                                              '#d9534f'];
                             for($i = 0;$i < 7;$i++){
-                                echo "['{$element_text[$i]}', $element_count[$i]],";
+                                echo "['{$element_text[$i]}', $element_count[$i], '$element_color[$i]'],";
                             }
                             ?>
                             ]);
 
+                            var view = new google.visualization.DataView(data);
+                            view.setColumns([0, 1, { calc: "stringify",
+                                                    sourceColumn: 1,
+                                                    type: "string",
+                                                    role: "annotation" }, 2]);
                             var options = {
-                            chart: {
-                                title: '',
-                                subtitle: '',
-                            }
+                                chart: {title: 'General Overview'},
+                                chartArea: {width:'95%',
+                                            height: '98%'},
+                                hAxis: {textPosition: 'in',},
+                                bar: {groupWidth: "92%"},
+                                legend: {position: "none"},
                             };
 
-                            var chart = new google.charts.Bar(document.getElementById('columnchart_material'));
-
-                            chart.draw(data, google.charts.Bar.convertOptions(options));
+                            var chart = new google.visualization.ColumnChart(document.getElementById('columnchart_material'));
+                            chart.draw(view, options);
                         }
                     </script>
                     <div id="columnchart_material" style="width: 'auto'; height: 500px;"></div>
