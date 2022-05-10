@@ -46,6 +46,9 @@ if(isset($_POST["update_post"])){
             WHERE post_id = '{$the_post_id}'";
   $update_post = mysqli_query($connection, $query);
   confirm($update_post);
+  echo "<p class='bg-success'>Post Updated. 
+  <a href='../post.php?p_id={$the_post_id}'>View Post</a> or 
+  <a href='posts.php'>Edit More Posts</a></p>";
 }
 ?>
 
@@ -55,6 +58,7 @@ if(isset($_POST["update_post"])){
     <input type="text" class="form-control" name="post_title" value="<?php echo $post_title ?>">
   </div>
   <div class="form-group">
+    <label for="post_category">Category</label><br>
     <select name="post_category" id="">
       <?php
       $query = "SELECT * FROM categories";
@@ -73,12 +77,19 @@ if(isset($_POST["update_post"])){
     <input type="text" class="form-control" name="post_author" value="<?php echo $post_author ?>">
   </div>
   <div class="form-group">
-    <label for="post_status">Post Status</label>
-    <input type="text" class="form-control" name="post_status" value="<?php echo $post_status ?>">
+    <label for="post_status">Post Status</label><br>
+    <select name="post_status" id="">
+      <option value=""><?php echo $post_status; ?></option>
+      <?php if($post_status == "PUBLISHED"){
+        echo "<option value='Draft'>Draft</option>";
+      }else{
+        echo "<option value='PUBLISHED'>PUBLISHED</option>";
+      } ?>
+    </select>
   </div>
   <div class="form-group">
+    <label for="post_image">Post Image</label><br>
     <img width="100" src="../images/<?php echo $post_image; ?>" alt="image">
-    <label for="post_image">Post Image</label>
     <input type="file" class="" name="post_image" value="<?php echo $post_image;?>">
   </div>
   <div class="form-group">
@@ -87,8 +98,7 @@ if(isset($_POST["update_post"])){
   </div>
   <div class="form-group">
     <label for="post_content">Post Content</label>
-    <textarea class="form-control" name="post_content" id="" cols="30" rows="10"><?php echo $post_content ?>
-</textarea>
+    <textarea class="form-control" name="post_content" id="summernote" cols="30" rows="10"><?php echo $post_content ?></textarea>
   </div>
   <div class="form-group">
     <input class="btn btn-primary" type="submit" name="update_post" value="Update Post">

@@ -41,6 +41,7 @@ if(isset($_POST["create_post"])){
     <input type="text" class="form-control" name="post_title">
   </div>
   <div class="form-group">
+    <label for="post_category">Category</label><br>
     <select name="post_category" id="">
       <?php
       $query = "SELECT * FROM categories";
@@ -59,8 +60,11 @@ if(isset($_POST["create_post"])){
     <input type="text" class="form-control" name="post_author">
   </div>
   <div class="form-group">
-    <label for="post_status">Post Status</label>
-    <input type="text" class="form-control" name="post_status">
+    <label for="post_status">Post Status</label><br>
+    <select name="post_status" id="">
+      <option value="Draft">Draft</option>
+      <option value="PUBLISHED">PUBLISHED</option>
+    </select>
   </div>
   <div class="form-group">
     <label for="post_image">Post Image</label>
@@ -72,8 +76,7 @@ if(isset($_POST["create_post"])){
   </div>
   <div class="form-group">
     <label for="post_content">Post Content</label>
-    <textarea class="form-control" name="post_content" id="" cols="30" rows="10">
-</textarea>
+    <textarea class="form-control" name="post_content" id="summernote" cols="30" rows="10"></textarea>
   </div>
   <div class="form-group">
     <input class="btn btn-primary" type="submit" name="create_post" value="Publish Post">

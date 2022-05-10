@@ -24,6 +24,9 @@
 
     <title>SB Admin - Bootstrap Admin Template</title>
 
+    <!-- JQuery Core -->
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+
     <!-- Bootstrap Core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
 
@@ -33,6 +36,11 @@
     <!-- Custom Fonts -->
     <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
+    <!-- WYSIWYG summernote -->
+    <!-- <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet"> -->
+    <link rel="stylesheet" href="css/summernote.css">
+
+    <!-- Google Chart Making Support -->
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
