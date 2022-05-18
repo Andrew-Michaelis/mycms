@@ -22,15 +22,23 @@ if(isset($_POST["edit_user"])){
   $user_role = $_POST["user_role"];
   $username = $_POST["username"];
   $user_password = $_POST["user_password"];
+
+  $query = "SELECT randSalt FROM users";
+  $select_salt_query = mysqli_query($connection, $query);
+  confirm($select_salt_query);
+  $row = mysqli_fetch_array($select_salt_query);
+  $salt = $row["randSalt"];
+
+  $hashed_password = crypt($user_password, $salt);
   $user_email = $_POST["user_email"];
 
   $query = "UPDATE users SET 
-              user_firstname = '${user_firstname}', 
-              user_lastname = '${user_lastname}', 
-              user_role = '${user_role}', 
-              username = '${username}', 
-              user_password = '${user_password}', 
-              user_email = '${user_email}'
+              user_firstname = '{$user_firstname}', 
+              user_lastname = '{$user_lastname}', 
+              user_role = '{$user_role}', 
+              username = '{$username}', 
+              user_password = '{$hashed_password}', 
+              user_email = '{$user_email}'
             WHERE user_id = '{$the_user_id}'";
   $update_user_query = mysqli_query($connection, $query);
   confirm($update_user_query);

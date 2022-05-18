@@ -33,6 +33,10 @@ if(isset($_POST["create_post"])){
                   '{$post_status}') ";
   $create_post_query = mysqli_query($connection, $query);
   confirm($create_post_query);
+  $the_post_id = mysqli_insert_id($connection);
+  echo "<p class='bg-success'>Post Added. 
+  <a href='../post.php?p_id={$the_post_id}'>View Post</a> or 
+  <a href='posts.php'>Edit Posts</a></p>";
 }
 ?>
 <form action="" method="post" enctype="multipart/form-data">
