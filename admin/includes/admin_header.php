@@ -28,17 +28,17 @@
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 
     <!-- Bootstrap Core CSS -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/plugins/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom CSS -->
-    <link href="css/sb-admin.css" rel="stylesheet">
+    <link href="css/plugins/sb-admin.css" rel="stylesheet">
 
     <!-- Custom Fonts -->
     <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
     <!-- WYSIWYG summernote -->
     <!-- <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet"> -->
-    <link rel="stylesheet" href="css/summernote.css">
+    <link href="css/summernote.css" rel="stylesheet">
 
     <!-- Google Chart Making Support -->
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
@@ -49,6 +49,8 @@
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
+
+    <link href="css/styles.css" rel="stylesheet">
 
 </head>
 

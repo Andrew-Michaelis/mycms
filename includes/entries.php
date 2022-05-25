@@ -1,8 +1,23 @@
 <?php include "db.php"; ?>
 <div class="col-md-8">
   <?php 
+  $per_page = 8;
+  if(isset($_GET["page"])){
+    $page = $_GET["page"];
+  }else{
+    $page = "";
+  }
+  if($page == "" || $page == 1){
+    $page_floor = 0;
+  }else{
+    $page_floor = ($page * $per_page) - $per_page;
+  }
+  $query = "SELECT * FROM posts";
+  $post_count_query = mysqli_query($connection, $query);
+  $count = ceil(mysqli_num_rows($post_count_query)/8);
+
   $empty = true;
-  $query = "SELECT * FROM posts WHERE post_status = 'PUBLISHED'";
+  $query = "SELECT * FROM posts WHERE post_status = 'PUBLISHED' LIMIT $page_floor, $per_page";
   $select_all_posts_query = mysqli_query($connection,$query);
 
   while($row = mysqli_fetch_assoc($select_all_posts_query)){
@@ -16,18 +31,13 @@
 
     if($post_status == "PUBLISHED"){
     ?>
-
-    <h1 class="page-header">
-      Page Heading
-      <small>Secondary Text</small>
-    </h1>
-
     <!-- Blog Post -->
     <h2>
       <a href="post.php?p_id=<?php echo $post_id; ?>"><?php echo $post_title ?></a>
     </h2>
     <p class="lead">
-      by <a href="index.php"><?php echo $post_author ?></a>
+      by <a href="author_post.php?p_id=<?php echo $post_id; ?>&author=<?php echo $post_author ?>">
+      <?php echo $post_author ?></a>
     </p>
     <p><span class="glyphicon glyphicon-time"></span> Posted on <?php echo $post_date ?></p>
     <hr>

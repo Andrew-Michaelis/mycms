@@ -42,7 +42,8 @@ if(isset($_POST["update_post"])){
               post_status = '${post_status}', 
               post_tags = '${post_tags}', 
               post_content = '${post_content}', 
-              post_image = '${post_image}' 
+              post_image = '${post_image}',
+              post_views_count = 0  
             WHERE post_id = '{$the_post_id}'";
   $update_post = mysqli_query($connection, $query);
   confirm($update_post);
